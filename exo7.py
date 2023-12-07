@@ -84,7 +84,7 @@ def get_score2(card) :
         top_rank = get_rank(card)
     else : 
         L = list(card)
-        for REMPLACEMENT in it.product(list(CARDS2), repeat = len(Js)) : 
+        for REMPLACEMENT in it.product(L, repeat = len(Js)) : 
             L2 = L.copy()
             for i, x in enumerate(REMPLACEMENT) : 
                 L2[Js[i]] = x
