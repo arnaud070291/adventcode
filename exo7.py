@@ -24,20 +24,14 @@ with open("./input7.txt") as fp:
 def get_rank(card):
     count = collections.Counter(card)
     count = "".join(map(str,reversed(sorted(count.values()))))
-    if count == "5" : 
-        rank = 7
-    elif count == "41" : 
-        rank = 6
-    elif count == "32" : 
-        rank = 5 
-    elif count == "311" : 
-        rank = 4 
-    elif count == "221" : 
-        rank = 3 
-    elif count == "2111" : 
-        rank = 2
-    else : 
-        rank = 1
+    match count:
+        case "5" : rank = 7
+        case "41" : rank = 6
+        case "32" : rank = 5
+        case "311" : rank = 4
+        case "221" : rank = 3
+        case "2111" : rank = 2
+        case _ : rank = 1
     return rank
 
 
