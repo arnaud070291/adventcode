@@ -13,18 +13,23 @@ with open("./input8.txt") as fp:
     INPUT = fp.read().split('\n')
     INPUT = [inp for inp in INPUT if inp]
     MOUVEMENTS = [re.findall("[0-9A-Z]{3}", x) for x in INPUT[1:]]
-    DIC_MOUVEMENTS = {a : {"L" : b, "R" : c} for (a,b,c) in MOUVEMENTS}
+    DIC_MOUVEMENTS = {source: {"L": left, "R": right}
+                      for (source, left, right) in MOUVEMENTS}
 
-## Partie 1 
-def find(source, endswith) : 
-    for i, m in enumerate(it.cycle(INPUT[0])) : 
+
+def find(source, endswith):
+    for i, m in enumerate(it.cycle(INPUT[0])):
         source = DIC_MOUVEMENTS[source][m]
-        if source.endswith(endswith) : break
+        if source.endswith(endswith):
+            break
     return i+1
-print(find("AAA","ZZZ"))
 
 
-## Partie 2
+# Partie 1
+print(find("AAA", "ZZZ"))
+
+
+# Partie 2
 sources = [k for k in DIC_MOUVEMENTS if k.endswith("A")]
 RES = [find(source, "Z") for source in sources]
 print(math.lcm(*RES))
